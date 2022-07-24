@@ -32,8 +32,8 @@ app.get('/public/notes',(req, res)=>{
 });
 ///save button activation
 ///write file
-app.post('/public/notes',(req, res)=> {
-    const note =req.body;
+app.post('/public/notes',(req, res,)=> {
+    let note =req.body;
     console.log(note)
     readFileA('./db/db.json','utf-8').then(function(data){
     const WrittenNotes = [].concat(JSON.parse(data));
@@ -42,9 +42,9 @@ app.post('/public/notes',(req, res)=> {
     console.log(WrittenNotes)    
     return WrittenNotes
     })
-    // .then 
+   app.put('/public/notes',(req,res)=>{
     
-        // return note
+   })
 });
 
 
