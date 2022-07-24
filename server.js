@@ -32,14 +32,14 @@ app.get('/public/notes',(req, res)=>{
 ///save button activation
 ///write file
 app.post('/public/notes',(req, res)=> {
-    const writtenNote =req.body;
-    console.log(writtenNote)
+    const note =req.body;
+    console.log(note)
     readFileA('./db/db.json','utf-8').then(function(data){
-    const blurb = [].concat(JSON.parse(data))
-    writtenNote.id = blurb.length+1
-    blurb.push(writtenNote)
-    console.log(blurb)    
-    return blurb
+    const notes = [].concat(JSON.parse(data))
+    note.id = notes.length+1
+    notes.push(notes)
+    console.log(notes)    
+    return notes
     })
     .then (function(notes){
         writeFileA('./db/db.json',JSON.stringify(notes))
