@@ -33,8 +33,15 @@ app.get('/public/notes',(req, res)=>{
 ///write file
 app.post('/public/notes',(req, res)=> {
     const writtenNote =req.body;
-    console.log(writtenNote)
+    // console.log(writtenNote)
+    readFileA('./db/db.json','utf-8').then(function(data){
+    blurb = [].concat(JSON.parse(data))
+    writtenNote.id = blurb.length+1
+    blurb.push(writtenNote)
+    console.log(blurb)    
+    return blurb
     })
+});
 
 
 
