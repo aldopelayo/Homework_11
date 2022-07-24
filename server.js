@@ -21,14 +21,23 @@ app.get('/notes',(req,res)=>{
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
-///save button activation
+
 ///read db field 
-app.get('/public/notes',function(req, res){
+app.get('/public/notes',(req, res)=>{
     readFileA('./db/db.json','utf-8').then(function(data){
         notes = [].concat(JSON.parse(data))
         res.json(notes);
     })
 });
+///save button activation
+///write file
+app.post('/public/notes',(req, res)=> {
+    const writtenNote =req.body;
+    console.log(writtenNote)
+    })
+
+
+
 ///post notes 
 
 
