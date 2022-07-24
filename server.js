@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static('public'));
 
 app.get('/',(req,res)=>{
@@ -25,8 +26,8 @@ app.get('/notes',(req,res)=>{
 ///read db field 
 app.get('/public/notes',(req, res)=>{
     readFileA('./db/db.json','utf-8').then(function(data){
-        notes = [].concat(JSON.parse(data))
-        res.json(notes);
+        WrittenNotes = [].concat(JSON.parse(data))
+        res.json(WrittenNotes);
     })
 });
 ///save button activation
@@ -35,16 +36,15 @@ app.post('/public/notes',(req, res)=> {
     const note =req.body;
     console.log(note)
     readFileA('./db/db.json','utf-8').then(function(data){
-    const notes = [].concat(JSON.parse(data))
-    note.id = notes.length+1
-    notes.push(notes)
-    console.log(notes)    
-    return notes
+    const WrittenNotes = [].concat(JSON.parse(data));
+    note.id = WrittenNotes.length+1
+    WrittenNotes.push(note);
+    console.log(WrittenNotes)    
+    return WrittenNotes
     })
-    .then (function(notes){
-        writeFileA('./db/db.json',JSON.stringify(notes))
-        res.json(note);
-    })
+    // .then 
+    
+        // return note
 });
 
 
